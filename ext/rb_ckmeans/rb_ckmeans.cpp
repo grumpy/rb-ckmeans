@@ -22,7 +22,7 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
   double* size = new double[len];
   double* bic = new double[len];
 
-  kmeans_1d_dp(values, size_t(len), NULL, size_t(1), size_t(len), cluster, centers, withinss, size, bic, "BIC 3.4.12", "linear", L1);
+  kmeans_1d_dp(values, size_t(len), NULL, size_t(1), size_t(len), cluster, centers, withinss, size, bic, "BIC 3.4.12", "linear", L2);
 
   VALUE result = rb_ary_new();
   for (int i = 0; i < len; i++) {
