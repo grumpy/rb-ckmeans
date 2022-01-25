@@ -7,12 +7,12 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
 {
   long len = rb_array_len(in_array);
 
-  double* values = new double(len);
-  int* cluster = new int(len);
-  double* centers = new double(len);
-  double* withinss = new double(len);
-  double* size = new double(len);
-  double* bic = new double(len);
+  double* values = new double[len];
+  int* cluster = new int[len];
+  double* centers = new double[len];
+  double* withinss = new double[len];
+  double* size = new double[len];
+  double* bic = new double[len];
 
   for (int i = 0; i < len; i++) {
     VALUE entry = rb_ary_entry(in_array, i);
