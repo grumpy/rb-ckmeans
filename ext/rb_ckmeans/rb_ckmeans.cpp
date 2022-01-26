@@ -13,7 +13,7 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
     
     values[i] = NUM2DBL(entry);
     
-    printf("rb_ckmeans_od_dp input %i %lf\n", i, values[i]);
+    //printf("rb_ckmeans_od_dp input %i %lf\n", i, values[i]);
   }
 
   int* cluster = new int[len];
@@ -30,7 +30,7 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
 
   VALUE result = rb_ary_new();
   for (int i = 0; i < len; i++) {
-    printf("rb_ckmeans_od_dp output %i %d\n", i, cluster[i]);
+    //printf("rb_ckmeans_od_dp output %i %d\n", i, cluster[i]);
 
     rb_ary_push(result, INT2NUM(cluster[i])); 
   }
