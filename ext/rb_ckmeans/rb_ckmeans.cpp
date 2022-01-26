@@ -13,20 +13,24 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
     
     values[i] = NUM2DBL(entry);
     
-    //printf("rb_ckmeans_od_dp input %i %lf\n", i, values[i]);
+    printf("rb_ckmeans_od_dp input %i %lf\n", i, values[i]);
   }
 
   int* cluster = new int[len];
   double* centers = new double[len];
   double* withinss = new double[len];
-  double* size = new double[len];
-  double* bic = new double[len];
+  int* size = new int[len];
+  //double* bic = new double[len];
 
-  kmeans_1d_dp(values, size_t(len), NULL, size_t(1), size_t(len), cluster, centers, withinss, size, bic, "BIC 3.4.12", "linear", L2);
+  //const char* estimate_k = "BIC 3.4.12"; //"BIC"; //"BIC 3.4.12";
+  //const char* method = "quadratic"; //"linear"; //"loglinear"; //"quadratic";
+
+  //kmeans_1d_dp(values, (size_t)len, NULL, (size_t)1, (size_t)len, cluster, centers, withinss, size, bic, estimate_k, method, L2);
+  kmeans_1d_dp(values, (size_t)len, NULL, (size_t)1, (size_t)len, cluster, centers, withinss, size);
 
   VALUE result = rb_ary_new();
   for (int i = 0; i < len; i++) {
-    //printf("rb_ckmeans_od_dp output %i %d\n", i, cluster[i]);
+    printf("rb_ckmeans_od_dp output %i %d\n", i, cluster[i]);
 
     rb_ary_push(result, INT2NUM(cluster[i])); 
   }
@@ -37,7 +41,7 @@ VALUE rb_ckmeans_od_dp(VALUE self, VALUE in_array)
   delete[] centers;
   delete[] withinss;
   delete[] size;
-  delete[] bic;
+  //delete[] bic;
 
   return result;
 }
